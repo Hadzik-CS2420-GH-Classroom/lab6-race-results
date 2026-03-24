@@ -1,0 +1,10 @@
+{
+  "assignment": {
+    "canvas_title": "💻 Assignment: Lab 6 - Race Results Manager",
+    "points_possible": 130,
+    "submission_types": ["online_url"],
+    "github_classroom": true,
+    "github_classroom_url": "",
+    "executable_name": "lab6-race-results.exe"
+  }
+}
