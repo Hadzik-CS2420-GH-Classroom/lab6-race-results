@@ -1,74 +1,71 @@
 #include "Sorts.h"
 #include <iostream>
-#include <algorithm>  // std::swap
-
-// =============================================================================
-// Lab 6: Sorting Algorithms — Race Results Manager
-// =============================================================================
-//
-// Implement all six sorting algorithms below. Review your CT12 and CT13
-// code if you get stuck, but try to write them from memory first.
-//
+#include <algorithm>
 
 // =============================================================================
 // O(n^2) Quadratic Sorts
 // =============================================================================
 
-// ---------------------------------------------------------------------------
-// TODO 1: bubble_sort (8 pts)
-// ---------------------------------------------------------------------------
-// Compare adjacent pairs, swap if out of order. Largest bubbles to end each pass.
-// Include early exit: if a full pass makes no swaps, the array is already sorted.
-// Time: O(n^2) avg/worst, O(n) best | Space: O(1) | Stable: Yes
-//
 void bubble_sort(std::vector<int>& data) {
-    // TODO: Implement bubble sort with early exit
+    int n = static_cast<int>(data.size());
+    for (int i = 0; i < n - 1; ++i) {
+        bool swapped = false;
+        for (int j = 0; j < n - 1 - i; ++j) {
+            if (data[j] > data[j + 1]) {
+                std::swap(data[j], data[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
 }
 
-// ---------------------------------------------------------------------------
-// TODO 2: insertion_sort (8 pts)
-// ---------------------------------------------------------------------------
-// Save the key, shift larger elements right, place key in the gap.
-// Builds a sorted region from left to right.
-// Time: O(n^2) avg/worst, O(n) best | Space: O(1) | Stable: Yes
-//
 void insertion_sort(std::vector<int>& data) {
-    // TODO: Implement insertion sort
+    int n = static_cast<int>(data.size());
+    for (int i = 1; i < n; ++i) {
+        int key = data[i];
+        int j = i - 1;
+        while (j >= 0 && data[j] > key) {
+            data[j + 1] = data[j];
+            --j;
+        }
+        data[j + 1] = key;
+    }
 }
 
-// ---------------------------------------------------------------------------
-// TODO 3: selection_sort (8 pts)
-// ---------------------------------------------------------------------------
-// Find the minimum in the unsorted region, swap it to the front.
-// Time: O(n^2) always | Space: O(1) | Stable: No
-//
 void selection_sort(std::vector<int>& data) {
-    // TODO: Implement selection sort
+    int n = static_cast<int>(data.size());
+    for (int i = 0; i < n - 1; ++i) {
+        int min_idx = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (data[j] < data[min_idx]) min_idx = j;
+        }
+        if (min_idx != i) std::swap(data[i], data[min_idx]);
+    }
 }
 
 // =============================================================================
 // O(n log n) Efficient Sorts
 // =============================================================================
 
-// ---------------------------------------------------------------------------
-// TODO 4: merge helper (10 pts)
-// ---------------------------------------------------------------------------
-// Merge two sorted halves: data[left..mid] and data[mid+1..right].
-// Copy each half into temp vectors, then merge back using two pointers.
-// This is where merge sort's O(n) extra space comes from.
-//
 static void merge(std::vector<int>& data, int left, int mid, int right) {
-    // TODO: Implement the merge step
+    std::vector<int> left_half(data.begin() + left, data.begin() + mid + 1);
+    std::vector<int> right_half(data.begin() + mid + 1, data.begin() + right + 1);
+    int i = 0, j = 0, k = left;
+    while (i < static_cast<int>(left_half.size()) && j < static_cast<int>(right_half.size())) {
+        if (left_half[i] <= right_half[j]) data[k++] = left_half[i++];
+        else data[k++] = right_half[j++];
+    }
+    while (i < static_cast<int>(left_half.size())) data[k++] = left_half[i++];
+    while (j < static_cast<int>(right_half.size())) data[k++] = right_half[j++];
 }
 
-// ---------------------------------------------------------------------------
-// TODO 5: merge_sort_recursive + public wrapper (11 pts)
-// ---------------------------------------------------------------------------
-// Base case: 0 or 1 elements (left >= right).
-// Recursive case: find mid, sort left half, sort right half, merge.
-//
 static void merge_sort_recursive(std::vector<int>& data, int left, int right) {
-    // TODO: Implement recursive merge sort
+    if (left >= right) return;
+    int mid = left + (right - left) / 2;
+    merge_sort_recursive(data, left, mid);
+    merge_sort_recursive(data, mid + 1, right);
+    merge(data, left, mid, right);
 }
 
 void merge_sort(std::vector<int>& data) {
@@ -76,26 +73,28 @@ void merge_sort(std::vector<int>& data) {
     merge_sort_recursive(data, 0, static_cast<int>(data.size()) - 1);
 }
 
-// ---------------------------------------------------------------------------
-// TODO 6: partition helper (10 pts)
-// ---------------------------------------------------------------------------
-// Use median-of-three to pick a good pivot, then partition:
-// elements <= pivot go left, elements > pivot go right.
-// Return the pivot's final index.
-//
 static int partition(std::vector<int>& data, int low, int high) {
-    // TODO: Implement partition with median-of-three pivot
-    return low;  // placeholder
+    int mid = low + (high - low) / 2;
+    if (data[mid] < data[low]) std::swap(data[low], data[mid]);
+    if (data[high] < data[low]) std::swap(data[low], data[high]);
+    if (data[mid] < data[high]) std::swap(data[mid], data[high]);
+    int pivot = data[high];
+    int i = low - 1;
+    for (int j = low; j < high; ++j) {
+        if (data[j] <= pivot) {
+            ++i;
+            std::swap(data[i], data[j]);
+        }
+    }
+    std::swap(data[i + 1], data[high]);
+    return i + 1;
 }
 
-// ---------------------------------------------------------------------------
-// TODO 7: quick_sort_recursive + public wrapper (10 pts)
-// ---------------------------------------------------------------------------
-// Base case: low >= high.
-// Partition, then recursively sort left and right sides.
-//
 static void quick_sort_recursive(std::vector<int>& data, int low, int high) {
-    // TODO: Implement recursive quick sort
+    if (low >= high) return;
+    int pivot_idx = partition(data, low, high);
+    quick_sort_recursive(data, low, pivot_idx - 1);
+    quick_sort_recursive(data, pivot_idx + 1, high);
 }
 
 void quick_sort(std::vector<int>& data) {
@@ -103,36 +102,28 @@ void quick_sort(std::vector<int>& data) {
     quick_sort_recursive(data, 0, static_cast<int>(data.size()) - 1);
 }
 
-// ---------------------------------------------------------------------------
-// TODO 8: heapify_down helper (8 pts)
-// ---------------------------------------------------------------------------
-// Restore max-heap property from index downward.
-// Compare with left (2i+1) and right (2i+2) children.
-// Swap with the largest child and recurse if needed.
-//
 static void heapify_down(std::vector<int>& data, int heap_size, int index) {
-    // TODO: Implement heapify_down
+    int largest = index;
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+    if (left < heap_size && data[left] > data[largest]) largest = left;
+    if (right < heap_size && data[right] > data[largest]) largest = right;
+    if (largest != index) {
+        std::swap(data[index], data[largest]);
+        heapify_down(data, heap_size, largest);
+    }
 }
 
-// ---------------------------------------------------------------------------
-// TODO 9: heap_sort (7 pts)
-// ---------------------------------------------------------------------------
-// Phase 1: Build max-heap (heapify_down on every non-leaf, from n/2-1 to 0).
-// Phase 2: Extract max repeatedly (swap root with last, shrink heap, heapify).
-// Time: O(n log n) always | Space: O(1) | Stable: No
-//
 void heap_sort(std::vector<int>& data) {
     int n = static_cast<int>(data.size());
     if (n <= 1) return;
-
-    // TODO Phase 1: Build max-heap
-
-    // TODO Phase 2: Extract max repeatedly
+    for (int i = n / 2 - 1; i >= 0; --i) heapify_down(data, n, i);
+    for (int i = n - 1; i > 0; --i) {
+        std::swap(data[0], data[i]);
+        heapify_down(data, i, 0);
+    }
 }
 
-// ---------------------------------------------------------------------------
-// Utility: print a vector
-// ---------------------------------------------------------------------------
 void print_vector(const std::vector<int>& data, const std::string& label) {
     if (!label.empty()) std::cout << label;
     std::cout << "[";
@@ -140,5 +131,6 @@ void print_vector(const std::vector<int>& data, const std::string& label) {
         if (i > 0) std::cout << ", ";
         std::cout << data[i];
     }
-    std::cout << "]\n";
+    std::cout << "]
+";
 }
