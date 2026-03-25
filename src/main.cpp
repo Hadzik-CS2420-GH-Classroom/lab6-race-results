@@ -22,16 +22,6 @@ int main() {
     std::cout << "--- Part 2: Analyzing Sorted Results ---\n";
     std::cout << "Is sorted? " << (is_sorted_ascending(copy) ? "true" : "false") << "\n";
     std::cout << "Median time: " << find_median(copy) << " seconds\n";
-    std::cout << "25th percentile: " << percentile(copy, 25) << " seconds\n";
-    std::cout << "75th percentile: " << percentile(copy, 75) << " seconds\n";
-
-    int target = 356;
-    int idx = binary_search(copy, target);
-    if (idx >= 0) {
-        std::cout << "Binary search for " << target << ": found at index " << idx << "\n";
-    } else {
-        std::cout << "Binary search for " << target << ": not found\n";
-    }
 
     std::vector<int> unique = remove_duplicates(copy);
     print_vector(unique, "Unique times:              ");

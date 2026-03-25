@@ -79,31 +79,6 @@ TEST(IsSortedTest, AllEqual) {
 }
 
 // =============================================================================
-// RaceAnalyzer: binary_search
-// =============================================================================
-
-TEST(BinarySearchTest, FoundAtMiddle) {
-    std::vector<int> data = {10, 20, 30, 40, 50};
-    EXPECT_EQ(binary_search(data, 30), 2);
-}
-
-TEST(BinarySearchTest, FoundAtStartAndEnd) {
-    std::vector<int> data = {10, 20, 30, 40, 50};
-    EXPECT_EQ(binary_search(data, 10), 0);
-    EXPECT_EQ(binary_search(data, 50), 4);
-}
-
-TEST(BinarySearchTest, NotFound) {
-    std::vector<int> data = {10, 20, 30, 40, 50};
-    EXPECT_EQ(binary_search(data, 25), -1);
-    EXPECT_EQ(binary_search(data, 100), -1);
-}
-
-TEST(BinarySearchTest, EmptyVector) {
-    EXPECT_EQ(binary_search({}, 5), -1);
-}
-
-// =============================================================================
 // RaceAnalyzer: find_median
 // =============================================================================
 
@@ -167,32 +142,4 @@ TEST(MergeSortedTest, OneEmpty) {
 TEST(MergeSortedTest, BothEmpty) {
     auto result = merge_sorted({}, {});
     EXPECT_TRUE(result.empty());
-}
-
-// =============================================================================
-// RaceAnalyzer: percentile
-// =============================================================================
-
-TEST(PercentileTest, FiftiethPercentile) {
-    // 10 elements: ceil(50/100 * 10) - 1 = 4
-    std::vector<int> data = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
-    EXPECT_EQ(percentile(data, 50), 500);
-}
-
-TEST(PercentileTest, TwentyFifthAndHundredth) {
-    std::vector<int> data = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
-    // ceil(25/100 * 10) - 1 = 2
-    EXPECT_EQ(percentile(data, 25), 300);
-    // ceil(100/100 * 10) - 1 = 9
-    EXPECT_EQ(percentile(data, 100), 1000);
-}
-
-TEST(PercentileTest, ThrowsOnEmpty) {
-    EXPECT_THROW(percentile({}, 50), std::runtime_error);
-}
-
-TEST(PercentileTest, ThrowsOutOfRange) {
-    std::vector<int> data = {1, 2, 3};
-    EXPECT_THROW(percentile(data, -1), std::runtime_error);
-    EXPECT_THROW(percentile(data, 101), std::runtime_error);
 }

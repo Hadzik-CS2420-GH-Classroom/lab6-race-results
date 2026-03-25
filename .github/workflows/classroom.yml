@@ -150,44 +150,44 @@ jobs:
         max-score: 2
 
     # ===================================================================
-    # O(n log n) Sorts (TODOs 4-9) -- 56 pts
+    # O(n log n) Sorts (TODOs 4-9) -- 68 pts
     # ===================================================================
 
-    - name: "Merge Sort: Basic (6 pts)"
+    - name: "Merge Sort: Basic (7 pts)"
       id: merge-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Basic"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.BasicSort
         timeout: 10
-        max-score: 6
+        max-score: 7
 
-    - name: "Merge Sort: Edge Cases (5 pts)"
+    - name: "Merge Sort: Edge Cases (6 pts)"
       id: merge-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.EmptyAndSingle
         timeout: 10
-        max-score: 5
+        max-score: 6
 
-    - name: "Merge Sort: Already Sorted (5 pts)"
+    - name: "Merge Sort: Already Sorted (6 pts)"
       id: merge-sorted
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Already Sorted"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.AlreadySorted
         timeout: 10
-        max-score: 5
+        max-score: 6
 
-    - name: "Merge Sort: Reverse & Duplicates (7 pts)"
+    - name: "Merge Sort: Reverse & Duplicates (6 pts)"
       id: merge-reverse
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Reverse & Duplicates"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.ReverseSortedAndDuplicates
         timeout: 10
-        max-score: 7
+        max-score: 6
 
     - name: "Quick Sort: Basic (6 pts)"
       id: quick-basic
@@ -198,23 +198,23 @@ jobs:
         timeout: 10
         max-score: 6
 
-    - name: "Quick Sort: Edge Cases (5 pts)"
+    - name: "Quick Sort: Edge Cases (6 pts)"
       id: quick-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Quick Sort: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=QuickSortTest.EmptyAndSingle
         timeout: 10
-        max-score: 5
+        max-score: 6
 
-    - name: "Quick Sort: Already Sorted (5 pts)"
+    - name: "Quick Sort: Already Sorted (6 pts)"
       id: quick-sorted
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Quick Sort: Already Sorted"
         command: cd build && ./run_tests --gtest_filter=QuickSortTest.AlreadySorted
         timeout: 10
-        max-score: 5
+        max-score: 6
 
     - name: "Quick Sort: Reverse & Duplicates (6 pts)"
       id: quick-reverse
@@ -234,14 +234,14 @@ jobs:
         timeout: 10
         max-score: 5
 
-    - name: "Heap Sort: Edge Cases (3 pts)"
+    - name: "Heap Sort: Edge Cases (5 pts)"
       id: heap-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Heap Sort: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=HeapSortTest.EmptyAndSingle
         timeout: 10
-        max-score: 3
+        max-score: 5
 
     - name: "Heap Sort: Already Sorted (5 pts)"
       id: heap-sorted
@@ -262,17 +262,17 @@ jobs:
         max-score: 4
 
     # ===================================================================
-    # Race Analyzer (TODOs 10-15) -- 50 pts
+    # Race Analyzer (TODOs 10-13) -- 38 pts
     # ===================================================================
 
-    - name: "is_sorted: Sorted Vector (1 pt)"
+    - name: "is_sorted: Sorted Vector (2 pts)"
       id: issorted-sorted
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "is_sorted: Sorted Vector"
         command: cd build && ./run_tests --gtest_filter=IsSortedTest.SortedVector
         timeout: 10
-        max-score: 1
+        max-score: 2
 
     - name: "is_sorted: Unsorted Vector (2 pts)"
       id: issorted-unsorted
@@ -283,122 +283,77 @@ jobs:
         timeout: 10
         max-score: 2
 
-    - name: "is_sorted: Edge Cases (1 pt)"
+    - name: "is_sorted: Edge Cases (2 pts)"
       id: issorted-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "is_sorted: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=IsSortedTest.EmptyAndSingle:IsSortedTest.AllEqual
         timeout: 10
-        max-score: 1
+        max-score: 2
 
-    - name: "Binary Search: Found (3 pts)"
-      id: bsearch-found
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: "Binary Search: Found"
-        command: cd build && ./run_tests --gtest_filter=BinarySearchTest.FoundAtMiddle:BinarySearchTest.FoundAtStartAndEnd
-        timeout: 10
-        max-score: 3
-
-    - name: "Binary Search: Not Found (5 pts)"
-      id: bsearch-notfound
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: "Binary Search: Not Found"
-        command: cd build && ./run_tests --gtest_filter=BinarySearchTest.NotFound:BinarySearchTest.EmptyVector
-        timeout: 10
-        max-score: 5
-
-    - name: "Median: Odd Size (2 pts)"
+    - name: "Median: Odd Size (3 pts)"
       id: median-odd
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Median: Odd Size"
         command: cd build && ./run_tests --gtest_filter=MedianTest.OddSize:MedianTest.SingleElement
         timeout: 10
-        max-score: 2
+        max-score: 3
 
-    - name: "Median: Even Size (2 pts)"
+    - name: "Median: Even Size (3 pts)"
       id: median-even
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Median: Even Size"
         command: cd build && ./run_tests --gtest_filter=MedianTest.EvenSize
         timeout: 10
-        max-score: 2
+        max-score: 3
 
-    - name: "Median: Throws on Empty (1 pt)"
+    - name: "Median: Throws on Empty (2 pts)"
       id: median-throw
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Median: Throws on Empty"
         command: cd build && ./run_tests --gtest_filter=MedianTest.ThrowsOnEmpty
         timeout: 10
-        max-score: 1
+        max-score: 2
 
-    - name: "Remove Duplicates: Basic (4 pts)"
+    - name: "Remove Duplicates: Basic (5 pts)"
       id: dedup-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Remove Duplicates: Basic"
         command: cd build && ./run_tests --gtest_filter=RemoveDuplicatesTest.HasDuplicates:RemoveDuplicatesTest.NoDuplicates
         timeout: 10
-        max-score: 4
+        max-score: 5
 
-    - name: "Remove Duplicates: Edge Cases (3 pts)"
+    - name: "Remove Duplicates: Edge Cases (5 pts)"
       id: dedup-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Remove Duplicates: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=RemoveDuplicatesTest.AllSame:RemoveDuplicatesTest.Empty
         timeout: 10
-        max-score: 3
+        max-score: 5
 
-    - name: "Merge Sorted: Two Non-Empty (5 pts)"
+    - name: "Merge Sorted: Two Non-Empty (7 pts)"
       id: mergesorted-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sorted: Two Non-Empty"
         command: cd build && ./run_tests --gtest_filter=MergeSortedTest.TwoNonEmpty
         timeout: 10
-        max-score: 5
+        max-score: 7
 
-    - name: "Merge Sorted: Edge Cases (5 pts)"
+    - name: "Merge Sorted: Edge Cases (7 pts)"
       id: mergesorted-edge
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sorted: Edge Cases"
         command: cd build && ./run_tests --gtest_filter=MergeSortedTest.OneEmpty:MergeSortedTest.BothEmpty
         timeout: 10
-        max-score: 5
-
-    - name: "Percentile: 50th (3 pts)"
-      id: percentile-50
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: "Percentile: 50th"
-        command: cd build && ./run_tests --gtest_filter=PercentileTest.FiftiethPercentile
-        timeout: 10
-        max-score: 3
-
-    - name: "Percentile: 25th and 100th (4 pts)"
-      id: percentile-other
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: "Percentile: 25th and 100th"
-        command: cd build && ./run_tests --gtest_filter=PercentileTest.TwentyFifthAndHundredth
-        timeout: 10
-        max-score: 4
-
-    - name: "Percentile: Error Handling (3 pts)"
-      id: percentile-errors
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: "Percentile: Error Handling"
-        command: cd build && ./run_tests --gtest_filter=PercentileTest.ThrowsOnEmpty:PercentileTest.ThrowsOutOfRange
-        timeout: 10
-        max-score: 3
+        max-score: 7
 
     # ===================================================================
     # Report results
@@ -435,8 +390,6 @@ jobs:
         ISSORTED-SORTED_RESULTS: "${{steps.issorted-sorted.outputs.result}}"
         ISSORTED-UNSORTED_RESULTS: "${{steps.issorted-unsorted.outputs.result}}"
         ISSORTED-EDGE_RESULTS: "${{steps.issorted-edge.outputs.result}}"
-        BSEARCH-FOUND_RESULTS: "${{steps.bsearch-found.outputs.result}}"
-        BSEARCH-NOTFOUND_RESULTS: "${{steps.bsearch-notfound.outputs.result}}"
         MEDIAN-ODD_RESULTS: "${{steps.median-odd.outputs.result}}"
         MEDIAN-EVEN_RESULTS: "${{steps.median-even.outputs.result}}"
         MEDIAN-THROW_RESULTS: "${{steps.median-throw.outputs.result}}"
@@ -444,8 +397,5 @@ jobs:
         DEDUP-EDGE_RESULTS: "${{steps.dedup-edge.outputs.result}}"
         MERGESORTED-BASIC_RESULTS: "${{steps.mergesorted-basic.outputs.result}}"
         MERGESORTED-EDGE_RESULTS: "${{steps.mergesorted-edge.outputs.result}}"
-        PERCENTILE-50_RESULTS: "${{steps.percentile-50.outputs.result}}"
-        PERCENTILE-OTHER_RESULTS: "${{steps.percentile-other.outputs.result}}"
-        PERCENTILE-ERRORS_RESULTS: "${{steps.percentile-errors.outputs.result}}"
       with:
-        runners: build,bubble-basic,bubble-edge,bubble-sorted,bubble-reverse,insertion-basic,insertion-edge,insertion-sorted,insertion-reverse,selection-basic,selection-edge,selection-sorted,selection-reverse,merge-basic,merge-edge,merge-sorted,merge-reverse,quick-basic,quick-edge,quick-sorted,quick-reverse,heap-basic,heap-edge,heap-sorted,heap-reverse,issorted-sorted,issorted-unsorted,issorted-edge,bsearch-found,bsearch-notfound,median-odd,median-even,median-throw,dedup-basic,dedup-edge,mergesorted-basic,mergesorted-edge,percentile-50,percentile-other,percentile-errors
+        runners: build,bubble-basic,bubble-edge,bubble-sorted,bubble-reverse,insertion-basic,insertion-edge,insertion-sorted,insertion-reverse,selection-basic,selection-edge,selection-sorted,selection-reverse,merge-basic,merge-edge,merge-sorted,merge-reverse,quick-basic,quick-edge,quick-sorted,quick-reverse,heap-basic,heap-edge,heap-sorted,heap-reverse,issorted-sorted,issorted-unsorted,issorted-edge,median-odd,median-even,median-throw,dedup-basic,dedup-edge,mergesorted-basic,mergesorted-edge

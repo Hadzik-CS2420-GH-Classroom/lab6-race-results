@@ -1,6 +1,17 @@
 #include "RaceAnalyzer.h"
-#include <cmath>
 
+// =============================================================================
+// Lab 6: Race Analyzer -- Utility functions on sorted data
+// =============================================================================
+//
+// These functions demonstrate the practical payoff of sorting:
+// median, deduplication, and merging all become fast and simple
+// once the data is in order.
+//
+
+// ---------------------------------------------------------------------------
+// TODO 10: is_sorted_ascending (6 pts)
+// ---------------------------------------------------------------------------
 bool is_sorted_ascending(const std::vector<int>& data) {
     for (size_t i = 1; i < data.size(); ++i) {
         if (data[i] < data[i - 1]) return false;
@@ -8,17 +19,9 @@ bool is_sorted_ascending(const std::vector<int>& data) {
     return true;
 }
 
-int binary_search(const std::vector<int>& data, int target) {
-    int low = 0, high = static_cast<int>(data.size()) - 1;
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
-        if (data[mid] == target) return mid;
-        else if (data[mid] < target) low = mid + 1;
-        else high = mid - 1;
-    }
-    return -1;
-}
-
+// ---------------------------------------------------------------------------
+// TODO 11: find_median (8 pts)
+// ---------------------------------------------------------------------------
 int find_median(const std::vector<int>& data) {
     if (data.empty()) throw std::runtime_error("empty vector");
     int n = static_cast<int>(data.size());
@@ -26,6 +29,9 @@ int find_median(const std::vector<int>& data) {
     return (data[n / 2 - 1] + data[n / 2]) / 2;
 }
 
+// ---------------------------------------------------------------------------
+// TODO 12: remove_duplicates (10 pts)
+// ---------------------------------------------------------------------------
 std::vector<int> remove_duplicates(const std::vector<int>& data) {
     if (data.empty()) return {};
     std::vector<int> result;
@@ -36,6 +42,9 @@ std::vector<int> remove_duplicates(const std::vector<int>& data) {
     return result;
 }
 
+// ---------------------------------------------------------------------------
+// TODO 13: merge_sorted (14 pts)
+// ---------------------------------------------------------------------------
 std::vector<int> merge_sorted(const std::vector<int>& a, const std::vector<int>& b) {
     std::vector<int> result;
     result.reserve(a.size() + b.size());
@@ -47,13 +56,4 @@ std::vector<int> merge_sorted(const std::vector<int>& a, const std::vector<int>&
     while (i < a.size()) result.push_back(a[i++]);
     while (j < b.size()) result.push_back(b[j++]);
     return result;
-}
-
-int percentile(const std::vector<int>& data, int p) {
-    if (data.empty()) throw std::runtime_error("empty vector");
-    if (p < 0 || p > 100) throw std::runtime_error("percentile out of range");
-    int n = static_cast<int>(data.size());
-    int index = static_cast<int>(std::ceil(p / 100.0 * n)) - 1;
-    if (index < 0) index = 0;
-    return data[index];
 }
