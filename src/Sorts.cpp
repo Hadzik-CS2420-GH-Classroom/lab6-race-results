@@ -131,6 +131,5 @@ void print_vector(const std::vector<int>& data, const std::string& label) {
         if (i > 0) std::cout << ", ";
         std::cout << data[i];
     }
-    std::cout << "]
-";
+    std::cout << "]\n";
 }
