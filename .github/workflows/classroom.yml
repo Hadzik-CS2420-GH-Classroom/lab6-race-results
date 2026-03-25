@@ -153,14 +153,14 @@ jobs:
     # O(n log n) Sorts (TODOs 4-9) -- 56 pts
     # ===================================================================
 
-    - name: "Merge Sort: Basic (5 pts)"
+    - name: "Merge Sort: Basic (6 pts)"
       id: merge-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Basic"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.BasicSort
         timeout: 10
-        max-score: 5
+        max-score: 6
 
     - name: "Merge Sort: Edge Cases (5 pts)"
       id: merge-edge
@@ -180,23 +180,23 @@ jobs:
         timeout: 10
         max-score: 5
 
-    - name: "Merge Sort: Reverse & Duplicates (6 pts)"
+    - name: "Merge Sort: Reverse & Duplicates (7 pts)"
       id: merge-reverse
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Merge Sort: Reverse & Duplicates"
         command: cd build && ./run_tests --gtest_filter=MergeSortTest.ReverseSortedAndDuplicates
         timeout: 10
-        max-score: 6
+        max-score: 7
 
-    - name: "Quick Sort: Basic (5 pts)"
+    - name: "Quick Sort: Basic (6 pts)"
       id: quick-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Quick Sort: Basic"
         command: cd build && ./run_tests --gtest_filter=QuickSortTest.BasicSort
         timeout: 10
-        max-score: 5
+        max-score: 6
 
     - name: "Quick Sort: Edge Cases (5 pts)"
       id: quick-edge
@@ -216,23 +216,23 @@ jobs:
         timeout: 10
         max-score: 5
 
-    - name: "Quick Sort: Reverse & Duplicates (5 pts)"
+    - name: "Quick Sort: Reverse & Duplicates (6 pts)"
       id: quick-reverse
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Quick Sort: Reverse & Duplicates"
         command: cd build && ./run_tests --gtest_filter=QuickSortTest.ReverseSortedAndDuplicates
         timeout: 10
-        max-score: 5
+        max-score: 6
 
-    - name: "Heap Sort: Basic (4 pts)"
+    - name: "Heap Sort: Basic (5 pts)"
       id: heap-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Heap Sort: Basic"
         command: cd build && ./run_tests --gtest_filter=HeapSortTest.BasicSort
         timeout: 10
-        max-score: 4
+        max-score: 5
 
     - name: "Heap Sort: Edge Cases (3 pts)"
       id: heap-edge
@@ -243,14 +243,14 @@ jobs:
         timeout: 10
         max-score: 3
 
-    - name: "Heap Sort: Already Sorted (4 pts)"
+    - name: "Heap Sort: Already Sorted (5 pts)"
       id: heap-sorted
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Heap Sort: Already Sorted"
         command: cd build && ./run_tests --gtest_filter=HeapSortTest.AlreadySorted
         timeout: 10
-        max-score: 4
+        max-score: 5
 
     - name: "Heap Sort: Reverse & Duplicates (4 pts)"
       id: heap-reverse
@@ -301,14 +301,14 @@ jobs:
         timeout: 10
         max-score: 3
 
-    - name: "Binary Search: Not Found (4 pts)"
+    - name: "Binary Search: Not Found (5 pts)"
       id: bsearch-notfound
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: "Binary Search: Not Found"
         command: cd build && ./run_tests --gtest_filter=BinarySearchTest.NotFound:BinarySearchTest.EmptyVector
         timeout: 10
-        max-score: 4
+        max-score: 5
 
     - name: "Median: Odd Size (2 pts)"
       id: median-odd
