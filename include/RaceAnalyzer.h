@@ -20,11 +20,6 @@
 // An empty vector or single-element vector is considered sorted.
 bool is_sorted_ascending(const std::vector<int>& data);
 
-// Binary search on a sorted vector.
-// Returns the index of target, or -1 if not found.
-// Must use the divide-and-conquer approach (not linear scan).
-int binary_search(const std::vector<int>& data, int target);
-
 // Returns the median value of a sorted vector.
 // Odd size: return the middle element.
 // Even size: return the average of the two middle elements (integer division).
@@ -40,10 +35,5 @@ std::vector<int> remove_duplicates(const std::vector<int>& data);
 // This is the merge step from merge sort, but as a standalone utility.
 // Neither input vector is modified.
 std::vector<int> merge_sorted(const std::vector<int>& a, const std::vector<int>& b);
-
-// Returns the value at the given percentile (0-100) of a sorted vector.
-// Uses nearest-rank method: index = ceil(percentile / 100.0 * n) - 1
-// Throws std::runtime_error if empty or percentile is out of [0, 100] range.
-int percentile(const std::vector<int>& data, int p);
 
 #endif // RACE_ANALYZER_H
